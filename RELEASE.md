@@ -36,3 +36,19 @@ Follow these steps to publish `@markdown-wysiwyg/editor` to npm.
 
 - [ ] **Tag**: Create a git tag for the release: `git tag v0.1.0`
 - [ ] **Push**: Push tags: `git push --tags`
+- [ ] **GitHub Release**: Create a new release on GitHub.
+    - Title: `v0.1.0`
+    - Description: Copy content from `CHANGELOG.md`.
+    - Attach: (Optional) `dist` assets if needed, though npm is the primary source.
+
+## 5. Maintenance
+
+- [ ] **Bump Version**: Prepare for next dev cycle (e.g., `0.1.1-dev`).
+- [ ] **Monitor**: Check npm page for correctness.
+
+## Versioning Guide (SemVer)
+
+- **Major** (`1.0.0`): Breaking changes.
+- **Minor** (`0.1.0`): New features, backward compatible.
+- **Patch** (`0.0.1`): Bug fixes, backward compatible.
+

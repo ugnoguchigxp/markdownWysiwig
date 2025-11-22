@@ -124,6 +124,64 @@ function App() {
 - Safari: Latest 2 versions
 - Mobile: iOS Safari 15+, Chrome Android
 
+## Advanced Usage
+
+### Custom Toolbar
+
+Currently, the toolbar is built-in, but you can toggle its visibility:
+
+```tsx
+<MarkdownEditor
+  value={content}
+  onChange={setContent}
+  showToolbar={false} // Hide default toolbar
+/>
+```
+
+### Custom Extensions
+
+You can inject standard TipTap extensions:
+
+```tsx
+import TextAlign from '@tiptap/extension-text-align';
+
+<MarkdownEditor
+  value={content}
+  onChange={setContent}
+  extensions={[
+    TextAlign.configure({
+      types: ['heading', 'paragraph'],
+    }),
+  ]}
+/>
+```
+
+## Troubleshooting
+
+### Styles not loading
+
+Ensure you have imported the CSS file in your root component:
+
+```tsx
+import '@markdown-wysiwyg/editor/style.css';
+```
+
+### Mermaid diagrams not rendering
+
+1. Ensure `enableMermaid={true}` is passed.
+2. Ensure `mermaidLib={mermaid}` is passed with the imported mermaid instance.
+3. Ensure `mermaid` is installed in your project (`pnpm add mermaid`).
+
+### "ReferenceError: global is not defined"
+
+If you encounter this error with Vite (often due to dependencies), add this to your `vite.config.ts`:
+
+```ts
+define: {
+  global: 'window',
+},
+```
+
 ## Examples
 
 See the `example/` directory for more usage examples.
