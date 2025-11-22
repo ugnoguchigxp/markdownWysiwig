@@ -1,0 +1,43 @@
+# Source files
+src/
+example/
+
+# Config files
+tsconfig.json
+vite.config.ts
+.eslintrc.*
+.prettierrc.*
+
+# Development
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Tests
+**/*.test.ts
+**/*.test.tsx
+**/*.spec.ts
+**/*.spec.tsx
+coverage/
+
+# CI/CD
+.github/
+.gitlab-ci.yml
+
+# Documentation (除外しない: README.mdとLICENSEは含める)
+# docs/
+
+# Logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Build artifacts
+*.tsbuildinfo
+node_modules/
