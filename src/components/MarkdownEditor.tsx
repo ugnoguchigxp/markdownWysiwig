@@ -318,9 +318,9 @@ export const MarkdownEditor: React.FC<IMarkdownEditorProps> = ({
   onMarkdownChange, // Currently disabled to prevent infinite loops with TextEditor
   onSelectionChange,
   onEditorReady,
-  showSyntaxStatus = true,
+  showSyntaxStatus,
   showPasteDebug = false,
-  showToolbar = true,
+  showToolbar,
   enableVerticalScroll = true,
   autoHeight = false,
   className = '',
@@ -330,6 +330,11 @@ export const MarkdownEditor: React.FC<IMarkdownEditorProps> = ({
   const [, setContent] = useState<JSONContent>();
   const [selectionInfo, setSelectionInfo] = useState<ISelectionInfo | null>(null);
   const [pasteEvents, setPasteEvents] = useState<IPasteEvent[]>([]);
+
+  // Determine visibility based on props and editable state
+  // If showToolbar/showSyntaxStatus is not explicitly provided, it defaults to the value of editable
+  const effectiveShowToolbar = showToolbar ?? editable;
+  const effectiveShowSyntaxStatus = showSyntaxStatus ?? editable;
   // const [lastMarkdown, setLastMarkdown] = useState<string>(''); // Removed: No longer needed after useEffect removal
   const [isUpdating, setIsUpdating] = useState<boolean>(false); // Prevent update loops
   const [isProcessing, setIsProcessing] = useState<boolean>(false); // Prevent paste processing loops
@@ -1014,7 +1019,7 @@ export const MarkdownEditor: React.FC<IMarkdownEditorProps> = ({
           </div>
         )}
 
-        {showToolbar && (
+        {effectiveShowToolbar && (
           <MarkdownToolbar
             onInsertMarkdown={handleInsertMarkdown}
             onShowHelp={handleShowHelp}
@@ -1057,7 +1062,7 @@ export const MarkdownEditor: React.FC<IMarkdownEditorProps> = ({
           />
 
         </div>
-        {showSyntaxStatus && (
+        {effectiveShowSyntaxStatus && (
           <MarkdownSyntaxStatus
             selectionInfo={selectionInfo}
             className="rounded-b-md"
